@@ -1,4 +1,72 @@
-# Prebid Universal Creative
+# Prebid Universal Creative for Geniee
+
+- [Prebid Universal Creative for Geniee](#prebid-universal-creative-for-geniee)
+  - [概要](#概要)
+    - [フォーク元の変更を取り入れる手順](#フォーク元の変更を取り入れる手順)
+    - [ビルドに使用しているバージョン](#ビルドに使用しているバージョン)
+      - [nodejs](#nodejs)
+      - [gulp](#gulp)
+  - [Prebid Universal Creative（original）](#prebid-universal-creativeoriginal)
+    - [Usage](#usage)
+    - [Install](#install)
+    - [Build for development](#build-for-development)
+    - [Build for production](#build-for-production)
+    - [Test](#test)
+    - [Contributing](#contributing)
+
+## 概要
+
+このリポジトリは、GenieeのPrebidJSのためのPrebid Universal Creativeのビルドを作成するためのものです。
+
+package.jsonの`globalVarName`が`gnpb`になっています。
+
+### フォーク元の変更を取り入れる手順
+
+1. フォーク元のリポジトリをリモートリポジトリとして追加します。
+    ```sh
+    git remote add upstream https://github.com/prebid/prebid-universal-creative.git
+    ```
+
+2. フォーク元のリポジトリから最新の変更をフェッチします。
+    ```sh
+    git fetch upstream
+    ```
+
+3. フェッチした変更を自分のブランチにマージします。
+    ```sh
+    git switch take_in_original  # 自分のメインブランチにチェックアウト
+    git merge upstream/main
+    ```
+
+4. 必要に応じてコンフリクトを解消し、変更をコミットします。
+
+5. 自分のリモートリポジトリにプッシュし、MRを作成。
+    ```sh
+    git push origin take_in_original
+    ```
+
+6. LGTMをチームメンバーからもらい、マージ
+
+これで、フォーク元の最新の変更を取り入れることができます。
+
+### ビルドに使用しているバージョン
+
+#### nodejs
+```sh
+$ node -v
+v14.21.3
+```
+
+#### gulp
+```sh
+$ gulp -v
+CLI version: 2.3.0
+Local version: 4.0.2
+```
+
+---
+
+## Prebid Universal Creative（original）
 
 Prebid Universal Creative is a javascript api to render multiple formats. This file is inserted into the prebid creative as a placeholder for the winning prebid creative. It should support the following formats:
  - Banner
@@ -7,7 +75,7 @@ Prebid Universal Creative is a javascript api to render multiple formats. This f
  - AMP creatives
  - All safeFrame creatives
  
-## Usage
+### Usage
 
 You can find a detailed explanations on the [Prebid Universal Creative](http://prebid.org/overview/prebid-universal-creative.html) and [AdOps - Add Creative](http://prebid.org/adops/step-by-step.html#step-2-add-a-creative) pages.
 
@@ -47,7 +115,7 @@ Universal creative library is loaded with `%%PATTERN:hb_format%%.js` path. Which
 
 > Note: Some build tools make explicit use of Node features which have been introduced in version *8.9.0*. Please make sure you're using the correct Node version (>8.9.0) before you proceed to create your own build using the commands listed below.
 
-## Install
+### Install
 
     $ git clone https://github.com/prebid/prebid-universal-creative.git
     $ cd prebid-universal-creative
@@ -64,7 +132,7 @@ To install `gulp-cli` globally, run the command: `npm install -g gulp-cli`.
 
 Run `gulp -v` just to make sure that the `CLI` major version is `2`. You're now good to run `gulp` commands.
 
-## Build for development
+### Build for development
 
     $ gulp serve
 
@@ -73,7 +141,7 @@ Starts a web server at `http://localhost:9999` serving from the project root and
 + `./build/creative.js` - Full source code for dev and debug
 + `./build/creative.js.map` - Source map for dev and debug
 
-## Build for production
+### Build for production
 
 We publish `prebid-universal-creative` as npm package on npmjs.com
 
@@ -89,7 +157,7 @@ When we run `npm publish`, prepublish script of package.json is executed. Script
 
 [jsDelivr](https://www.jsdelivr.com/) – Open Source CDN is used to serve creative.js file.
 
-## Test
+### Test
 
 We like to test a lot before releasing newer versions. 
 
@@ -118,7 +186,7 @@ We like to test a lot before releasing newer versions.
    Reason to add specific host to your host file is
    - To test against your local build, we had to give local path in dfp creative. Redirecting request is not possible in browserstack.
    - On localhost domain you do not receive bid from certain SSP's, hence you have to have some host defined in hosts file. As of now we are using `test.localhost` defined in local host file as well as `DFP creative`.
-## Contributing
+### Contributing
 
 Found a bug? Great!
 This project is in its infancy, and many things can be improved.
