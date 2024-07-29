@@ -1,7 +1,9 @@
 # Prebid Universal Creative for Geniee
 
 - [Prebid Universal Creative for Geniee](#prebid-universal-creative-for-geniee)
-  - [概要](#概要)
+  - [Prebid Universal Creative（for geniee）](#prebid-universal-creativefor-geniee)
+    - [概要](#概要)
+    - [latestブランチ](#latestブランチ)
     - [フォーク元の変更を取り入れる手順](#フォーク元の変更を取り入れる手順)
     - [ビルドに使用しているバージョン](#ビルドに使用しているバージョン)
       - [nodejs](#nodejs)
@@ -14,11 +16,18 @@
     - [Test](#test)
     - [Contributing](#contributing)
 
-## 概要
+## Prebid Universal Creative（for geniee）
+### 概要
 
 このリポジトリは、GenieeのPrebidJSのためのPrebid Universal Creativeのビルドを作成するためのものです。
 
 package.jsonの`globalVarName`が`gnpb`になっています。
+
+### latestブランチ
+
+latestブランチをリリース用ブランチとして利用します。
+
+masterブランチにはpre-releaseの内容が含まれることがあり、安定しないためです。
 
 ### フォーク元の変更を取り入れる手順
 
@@ -32,20 +41,24 @@ package.jsonの`globalVarName`が`gnpb`になっています。
     git fetch upstream
     ```
 
-3. フェッチした変更を自分のブランチにマージします。
+3. latestブランチをもとにブランチを作成します。
     ```sh
-    git switch take_in_original  # 自分のメインブランチにチェックアウト
-    git merge upstream/main
+    git switch latest
+    git switch -c $take_in_version
     ```
 
-4. 必要に応じてコンフリクトを解消し、変更をコミットします。
-
-5. 自分のリモートリポジトリにプッシュし、MRを作成。
+4. 適用したいバージョンをmerge
     ```sh
-    git push origin take_in_original
+    git merge upstream/$version
+    ```
+
+5. ブランチをリモートリポジトリにプッシュし、MRを作成。
+    ```sh
+    git push origin $take_in_version
     ```
 
 6. LGTMをチームメンバーからもらい、マージ
+7. npmパッケージを更新
 
 これで、フォーク元の最新の変更を取り入れることができます。
 
