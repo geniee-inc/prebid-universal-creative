@@ -44,7 +44,7 @@ masterブランチにはpre-releaseの内容が含まれることがあり、安
 3. latestブランチをもとにブランチを作成します。
     ```sh
     git switch latest
-    git switch -c $take_in_version
+    git switch -c "update_by_$version" # ex. git switch -c update_by_1.16.0
     ```
 
 4. 適用したいバージョンをmerge
@@ -54,7 +54,7 @@ masterブランチにはpre-releaseの内容が含まれることがあり、安
 
 5. ブランチをリモートリポジトリにプッシュし、MRを作成。
     ```sh
-    git push origin $take_in_version
+    git push origin "update_by_$version" # ex. git push origin update_by_1.16.0
     ```
 
 6. LGTMをチームメンバーからもらい、マージ
