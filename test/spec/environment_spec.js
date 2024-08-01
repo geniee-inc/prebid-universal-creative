@@ -43,7 +43,7 @@ describe('environment module', function() {
     let localWindow = {
       parent: {
         parent: {
-          pbjs: {
+          gnpb: {
             fakeFn: () => {}
           }
         }
